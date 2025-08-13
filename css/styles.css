@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    /* Color Variables */
+    --bg-main: #121212;
+    --bg-secondary: #282828;
+    --bg-card: #1a1a1a;
+    --bg-active: rgba(77, 171, 247, 0.2);
+
+    --text-main: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --text-accent: #ffffff;
+
+    --accent: #4dabf7;
+    --accent-hover: #339af0;
+    --accent-danger: #ff6b6b;
+
+    --border-color: #737373;
+    --border-active: 3px solid var(--accent);
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+
+    /* Spacing Variables */
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    height: 100%;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
+}
+
+/* Sidebar Styles */
+#sidebar {
+    width: 20%;
+    height: 100vh;
+    background-color: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+}
+
+#sidebar-title {
+    color: var(--accent);
+    font-size: 1.5rem;
+    padding: var(--space-md);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-secondary);
+    z-index: 1;
+    margin: 0;
+}
+
+#tasks-sidebar {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 var(--space-md) var(--space-md);
+}
+
+/* Main Content Area */
+#tasks {
+    width: 80%;
+    height: 100vh;
+    overflow-y: auto;
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+/* Task Navigation Items */
+.task-item {
+    padding: var(--space-sm);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    margin-bottom: var(--space-sm);
+    cursor: pointer;
+}
+
+.task-item a {
+    text-decoration: none;
+    color: var(--text-main);
+    display: block;
+    font-size: 0.9rem;
+}
+
+.task-item:hover {
+    background-color: var(--bg-active);
+}
+
+.task-item.active {
+    background-color: var(--bg-active);
+    border-left: var(--border-active);
+}
+
+.task-item.active a {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+/* Task Cards */
+.task {
+    background-color: var(--bg-card);
+    padding: var(--space-md);
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    scroll-margin-top: var(--space-md);
+    min-height: 150px; /* Ensure sections are tall enough */
+}
+
+.task h2 {
+    margin-bottom: var(--space-sm);
+    color: var(--text-accent);
+}
+
+/* Status Indicators */
+.complete {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.uncompleted {
+    color: var(--accent-danger);
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    #sidebar, #tasks {
+        width: 100%;
+        height: auto;
+    }
+
+    #sidebar {
+        max-height: 40vh;
+        position: relative;
+    }
+}

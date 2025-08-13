@@ -14,6 +14,7 @@ async function addTitles() {
                  </a></div>`
             );
         });
+        updateActiveSection();
     } catch (error) {
         console.error(error);
         sidebar.insertAdjacentHTML(

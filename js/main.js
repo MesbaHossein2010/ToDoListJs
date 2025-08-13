@@ -14,7 +14,7 @@ async function addTasks() {
                     </div>`
             );
         });
-
+        updateActiveSection();
     } catch (error) {
         console.error(error);
         main.insertAdjacentHTML(

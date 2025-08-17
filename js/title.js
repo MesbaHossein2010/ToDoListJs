@@ -2,7 +2,7 @@ let index = 0;
 let titles = [];
 
 async function loadTitles() {
-    const fetchedData = await fetch('https://jsonplaceholder.typicode.com/todos/30')
+    const fetchedData = await fetch('https://jsonplaceholder.typicode.com/todos/')
         .then(response => response.json())
         .catch(error => {
             console.error(error);
@@ -13,8 +13,9 @@ async function loadTitles() {
         'ToDo list',
         'Come and see your tasks',
         "Don't forget your work!",
-        'Finish:' + fetchedData.title.slice(0, 10) + '...'
+        'Finish:' + fetchedData[30].title.slice(0, 10) + '...'
     ];
+    return fetchedData
 }
 
 function changeTitle() {
@@ -23,9 +24,10 @@ function changeTitle() {
 }
 
 async function title() {
-    await loadTitles();
+    let data = await loadTitles();
     changeTitle();
     setInterval(changeTitle, 3000);
+    return data;
 }
 
-title();
+window.tasks = title();

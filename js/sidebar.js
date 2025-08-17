@@ -1,10 +1,7 @@
 const sidebar = document.getElementById('tasks-sidebar');
 
-async function addTitles() {
+async function addTitles(fetchedData) {
     try {
-        const fetchedData = await fetch('https://jsonplaceholder.typicode.com/todos/')
-            .then(response => response.json());
-
         fetchedData.forEach((data) => {
             title = data.title.length > 30 ? data.title.slice(0, 30) + '...' : data.title
             sidebar.insertAdjacentHTML(
@@ -23,5 +20,4 @@ async function addTitles() {
         );
     }
 }
-
-addTitles();
+window.tasks.then(data => addTitles(data));

@@ -1,10 +1,7 @@
 const main = document.getElementById('tasks');
 
-async function addTasks() {
+async function addTasks(fetchedData) {
     try {
-        const fetchedData = await fetch('https://jsonplaceholder.typicode.com/todos/')
-            .then(response => response.json());
-
         fetchedData.forEach((data) => {
             main.insertAdjacentHTML(
                 'beforeend',
@@ -14,7 +11,7 @@ async function addTasks() {
                     </div>`
             );
         });
-        updateActiveSection();
+
     } catch (error) {
         console.error(error);
         main.insertAdjacentHTML(
@@ -23,5 +20,5 @@ async function addTasks() {
         );
     }
 }
-
-addTasks();
+console.log(window.tasks)
+window.tasks.then(data => addTasks(data))

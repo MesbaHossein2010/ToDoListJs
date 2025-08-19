@@ -1,17 +1,16 @@
 const sidebar = document.getElementById('tasks-sidebar');
 
-async function addTitles(fetchedData) {
+function addTitles(fetchedData) {
     try {
         fetchedData.forEach((data) => {
             title = data.title.length > 30 ? data.title.slice(0, 30) + '...' : data.title
             sidebar.insertAdjacentHTML(
                 'beforeend',
-                `<div class="task-item"><a href="#${data.title.replaceAll(' ', '-')}">
+                `<div id="${data.title.replaceAll(' ', '-') + "-sidebar"}" class="task-item"><a href="#${data.title.replaceAll(' ', '-')}">
                     <h4>${title}</h4>
                  </a></div>`
             );
         });
-        updateActiveSection();
     } catch (error) {
         console.error(error);
         sidebar.insertAdjacentHTML(

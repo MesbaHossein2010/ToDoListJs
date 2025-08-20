@@ -6,6 +6,10 @@
     --bg-secondary: #282828;
     --bg-card: #1a1a1a;
     --bg-active: rgba(77, 171, 247, 0.2);
+    --bg-button: #2d2d2d;
+    --bg-button-hover: #3d3d3d;
+    --bg-form: #232323;
+    --bg-create: rgba(77, 171, 247, 0.1);
 
     --text-main: #e0e0e0;
     --text-muted: #a0a0a0;
@@ -14,6 +18,7 @@
     --accent: #4dabf7;
     --accent-hover: #339af0;
     --accent-danger: #ff6b6b;
+    --accent-success: #51cf66;
 
     --border-color: #737373;
     --border-active: 3px solid var(--accent);
@@ -143,6 +148,12 @@ body {
     box-shadow: var(--shadow);
     scroll-margin-top: var(--space-md);
     min-height: 150px; /* Ensure sections are tall enough */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .task h2 {
@@ -154,11 +165,187 @@ body {
 .complete {
     color: var(--accent);
     font-weight: 500;
+    background: rgba(77, 171, 247, 0.15);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin-bottom: var(--space-md);
 }
 
 .uncompleted {
     color: var(--accent-danger);
     font-weight: 500;
+    background: rgba(255, 107, 107, 0.15);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin-bottom: var(--space-md);
+}
+
+/* Button Styles */
+.edit, .delete, #create, #cancel-create {
+    background: var(--bg-button);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    margin-right: var(--space-sm);
+    transition: all 0.2s ease;
+}
+
+.edit:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.delete:hover {
+    background: var(--accent-danger);
+    color: white;
+    border-color: var(--accent-danger);
+}
+
+#create {
+    margin: 0 var(--space-md) var(--space-md);
+    background: var(--accent);
+    color: white;
+    border: none;
+    font-weight: 500;
+}
+
+#create:hover {
+    background: var(--accent-hover);
+}
+
+/* Edit Form Styles */
+#edit, #create-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    background: var(--bg-form);
+    padding: var(--space-md);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+#edit input[type="text"],
+#create-form input[type="text"] {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: var(--space-sm);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+}
+
+#edit input[type="checkbox"],
+#create-form input[type="checkbox"] {
+    margin-right: var(--space-sm);
+    accent-color: var(--accent);
+    width: 16px;
+    height: 16px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin: var(--space-sm) 0;
+}
+
+#edit button[type="submit"],
+#create-form button[type="submit"] {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+#edit button[type="submit"]:hover,
+#create-form button[type="submit"]:hover {
+    background: var(--accent-hover);
+}
+
+#cancel-create {
+    background: var(--bg-button);
+    margin-top: var(--space-sm);
+}
+
+#cancel-create:hover {
+    background: var(--accent-danger);
+    color: white;
+    border-color: var(--accent-danger);
+}
+
+/* Create Form Specific Styles */
+#new-task-form {
+    background-color: var(--bg-create);
+    border: 2px dashed var(--accent);
+}
+
+#create-form {
+    background: transparent;
+    border: none;
+}
+
+/* Focus states for accessibility */
+button:focus, input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Empty state styling */
+.empty-state {
+    text-align: center;
+    padding: var(--space-lg);
+    color: var(--text-muted);
+}
+
+/* Improved scrollbar for sidebar */
+#tasks-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+#tasks-sidebar::-webkit-scrollbar-thumb {
+    background: var(--bg-card);
+    border-radius: 3px;
+}
+
+/* Animation for title changes */
+@keyframes titleFade {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.title-change {
+    animation: titleFade 3s ease-in-out;
+}
+
+/* Animation for new tasks */
+@keyframes taskFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.new-task {
+    animation: taskFadeIn 0.3s ease-out;
 }
 
 /* Responsive Design */
@@ -175,5 +362,14 @@ body {
     #sidebar {
         max-height: 40vh;
         position: relative;
+    }
+
+    .edit, .delete, #create, #cancel-create {
+        width: 100%;
+        margin-bottom: var(--space-sm);
+    }
+
+    #edit, #create-form {
+        flex-direction: column;
     }
 }

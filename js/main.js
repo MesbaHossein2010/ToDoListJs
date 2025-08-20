@@ -22,7 +22,7 @@ async function addTasks(fetchedData) {
             const deleteBtn = taskEl.querySelector('.delete');
 
             editBtn.addEventListener('click', () => {
-
+                edit(taskEl, editBtn, data)
             });
 
             deleteBtn.addEventListener('click', () => {
